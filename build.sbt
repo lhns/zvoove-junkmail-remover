@@ -12,6 +12,8 @@ lazy val root = (project in file("."))
     name := "zvoove-junkmail-remover",
 
     libraryDependencies ++= Seq(
+      "ch.qos.logback" % "logback-classic" % "1.2.10",
+      "io.circe" %% "circe-config" % "0.8.0",
       "io.circe" %% "circe-core" % V.circe,
       "io.circe" %% "circe-generic" % V.circe,
       "io.circe" %% "circe-parser" % V.circe,
