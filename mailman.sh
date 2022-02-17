@@ -1,4 +1,4 @@
-baseUrl="https://drey-personal.europersonal.com"
+baseUrl=""
 username=""
 password=""
 filter='[]'
