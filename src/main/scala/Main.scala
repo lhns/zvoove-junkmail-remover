@@ -9,6 +9,7 @@ import org.http4s.jdkhttpclient.JdkHttpClient
 import org.http4s.{Method, Request, RequestCookie, Uri}
 import org.log4s.getLogger
 
+import java.nio.charset.StandardCharsets
 import java.nio.file.{Files, Path, Paths, StandardOpenOption}
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -159,7 +160,10 @@ object Main extends IOApp {
           filteredEmail <- Stream.iterable(emails).filter(email => blacklist.exists(e => e.length >= 3 && email.Bezeichnung.contains(e)))
           message = s"Deleting ${filteredEmail.Bezeichnung}"
           _ = logger.info(message)
-          _ = logFileOption.foreach(Files.writeString(_, s"[${LocalDateTime.now.format(logFileDateFormatter)}] $message\n", StandardOpenOption.CREATE, StandardOpenOption.APPEND))
+          _ = logFileOption.foreach { logFile =>
+            val logFileMessage = s"[${LocalDateTime.now.format(logFileDateFormatter)}] $message\n"
+            Files.write(logFile, logFileMessage.getBytes(StandardCharsets.UTF_8), StandardOpenOption.CREATE, StandardOpenOption.APPEND)
+          }
           _ <- {
             if (config.dryRunOrDefault)
               Stream.empty
