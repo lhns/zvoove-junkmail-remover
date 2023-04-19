@@ -2,9 +2,13 @@ ThisBuild / version := "0.1.0-SNAPSHOT"
 
 ThisBuild / scalaVersion := "2.13.8"
 
-val V = new {
-  val circe = "0.14.1"
-  val http4s = "0.23.9"
+val V = new {  
+  val betterMonadicFor = "0.3.1"
+  val circe = "0.14.5"
+  val circeConfig = "0.10.0"
+  val http4s = "0.23.18"  
+  val http4sJdkHttpClient = "0.9.0"
+  val logbackClassic = "1.4.6"
 }
 
 lazy val root = (project in file("."))
@@ -12,14 +16,15 @@ lazy val root = (project in file("."))
     name := "zvoove-junkmail-remover",
 
     libraryDependencies ++= Seq(
-      "ch.qos.logback" % "logback-classic" % "1.2.10",
-      "io.circe" %% "circe-config" % "0.8.0",
-      "io.circe" %% "circe-core" % V.circe,
+      "ch.qos.logback" % "logback-classic" % V.logbackClassic,
+      "io.circe" %% "circe-config" % V.circeConfig,
       "io.circe" %% "circe-generic" % V.circe,
       "io.circe" %% "circe-parser" % V.circe,
       "org.http4s" %% "http4s-circe" % V.http4s,
-      "org.http4s" %% "http4s-jdk-http-client" % "0.5.0",
+      "org.http4s" %% "http4s-jdk-http-client" % V.http4sJdkHttpClient,
     ),
+
+    addCompilerPlugin("com.olegpy" %% "better-monadic-for" % V.betterMonadicFor)
 
     assembly / assemblyJarName := s"${name.value}-${version.value}.sh.bat",
 
