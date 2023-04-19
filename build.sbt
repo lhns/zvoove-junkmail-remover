@@ -24,7 +24,7 @@ lazy val root = (project in file("."))
       "org.http4s" %% "http4s-jdk-http-client" % V.http4sJdkHttpClient,
     ),
 
-    addCompilerPlugin("com.olegpy" %% "better-monadic-for" % V.betterMonadicFor)
+    addCompilerPlugin("com.olegpy" %% "better-monadic-for" % V.betterMonadicFor),
 
     assembly / assemblyJarName := s"${name.value}-${version.value}.sh.bat",
 
