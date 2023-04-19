@@ -151,8 +151,8 @@ object Main extends IOApp {
 
     (Stream.emit(()) ++ Stream.awakeDelay[IO](config.interval)).evalTap { _ =>
       logger.debug("Scanning Mails")
-      JdkHttpClient.simple[IO].use { client =>
-        (for {
+      (for {
+          client <- Stream.eval(JdkHttpClient.simple[IO])
           session <- Stream.eval(login(client, config.baseUri, config.username, config.password))
           blacklistPatterns <- Stream.eval(getBlacklist(client, config.baseUri, session, config.blacklistEmail))
           blacklist = blacklistPatterns.map(_.dropWhile(_ == '*'))
@@ -171,8 +171,10 @@ object Main extends IOApp {
               Stream.eval(deleteEmail(client, config.baseUri, session, filteredEmail))
           }
         } yield ())
-          .compile.drain
-      }.attempt.map(_.swap.map(logger.error(_)("Error")))
+          .compile
+          .drain
+          .attempt
+          .map(_.swap.map(logger.error(_)("Error")))
     }.compile.drain.as(ExitCode.Success)
   }
 }
