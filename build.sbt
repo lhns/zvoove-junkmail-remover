@@ -8,7 +8,7 @@ val V = new {
   val circeConfig = "0.10.0"
   val http4s = "0.23.18"  
   val http4sJdkHttpClient = "0.9.0"
-  val logbackClassic = "1.4.6"
+  val logbackClassic = "1.4.7"
 }
 
 lazy val root = (project in file("."))
