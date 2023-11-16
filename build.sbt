@@ -1,11 +1,11 @@
 ThisBuild / version := "0.1.0-SNAPSHOT"
 
-ThisBuild / scalaVersion := "2.13.11"
+ThisBuild / scalaVersion := "2.13.12"
 
 val V = new {  
   val betterMonadicFor = "0.3.1"
   val circe = "0.14.6"
-  val circeConfig = "0.10.0"
+  val circeConfig = "0.10.1"
   val http4s = "0.23.23"  
   val http4sJdkHttpClient = "0.9.1"
   val logbackClassic = "1.4.11"
