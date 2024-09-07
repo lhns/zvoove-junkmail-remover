@@ -4,7 +4,7 @@ ThisBuild / scalaVersion := "2.13.14"
 
 val V = new {  
   val betterMonadicFor = "0.3.1"
-  val circe = "0.14.7"
+  val circe = "0.14.10"
   val circeConfig = "0.10.1"
   val http4s = "0.23.27"  
   val http4sJdkHttpClient = "0.9.1"
