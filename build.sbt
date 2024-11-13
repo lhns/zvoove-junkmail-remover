@@ -7,7 +7,7 @@ val V = new {
   val circe = "0.14.10"
   val circeConfig = "0.10.1"
   val http4s = "0.23.27"  
-  val http4sJdkHttpClient = "0.9.1"
+  val http4sJdkHttpClient = "0.9.2"
   val logbackClassic = "1.5.12"
 }
 
